@@ -1,0 +1,36 @@
+#Server port
+server:
+  port: 8080
+  servlet:
+    context-path: /fidena
+#Spring properties
+spring:
+  #Name
+  application:
+    name: fidena-crud
+  #Database properties
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fidena?socketTimeout=30
+    username: user
+    password: secret
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 20000
+      minimum-idle: 2
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      leak-detection-threshold: 10000
+  #i18n
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  #Migraciaones
+  flyway:
+    enabled: true
+    baseline-version: 1
+    schemas: public
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    sql-migration-prefix: V
+    sql-migration-suffixes: .sql
